@@ -1,0 +1,19 @@
+[package]
+name = "bevy-match-3"
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+rust-version = "1.92.0"
+
+[dependencies]
+bevy = { version = "0.18", features = ["experimental_bevy_ui_widgets"] }
+rand = "0.10"
+
+[features]
+# bevy/debug enables improved diagnostic information.
+# You can add other helpful debug and dev tools here as well.
+dev-mode = ["bevy/debug"]
+
+# Improve performance for dependencies in debug builds.
+[profile.dev.package."*"]
+opt-level = 3

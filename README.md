@@ -3,7 +3,7 @@
 A bog-standard Match-3 game built with [Bevy](https://bevy.org/) for [RustWeek 2026](https://2026.rustweek.org/).
 Polished and playable, but intentionally simple so workshop participants can read, understand, and extend it.
 
-<img width="649" height="737" alt="image" src="https://github.com/user-attachments/assets/5befb31f-8e7d-45c6-8bc9-2e97f23829fe" />
+<img width="636" height="724" alt="image" src="https://github.com/user-attachments/assets/e63b9e4a-b6d7-42e4-829e-21f734b164de" />
 
 ## Expected Background
 

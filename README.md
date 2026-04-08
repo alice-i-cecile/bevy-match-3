@@ -19,9 +19,8 @@ Polished and playable, but intentionally simple so workshop participants can rea
 
 ## Understanding this Codebase
 
-This project is not intended to be read alone!
-For the most part, it is documented and commented as if it were a real, production game.
-You will have to supplement it with other learning materials.
+For the most part, this project is documented and commented as if it were a real, production game.
+As a result, if you're new to Bevy, you should expect to supplement it with other learning materials.
 
 Still, we make a few concessions.
 To make this more useful as a learning tool, `src/main.rs` provides a high-level codebase overview,
@@ -59,12 +58,13 @@ Subsequent builds are much faster due to incremental compilation.
 
 ### Dev Mode
 
-Run with the `dev-mode` feature to enable Bevy's built-in debug overlays
-(UI layout boxes, entity outlines, etc.):
+Run with the `dev-mode` feature to improve diagnostics on errors:
 
 ```bash
 cargo run --features dev-mode
 ```
+
+You can add additional dev tools to this feature flag as you need them!
 
 ## How to Play
 
@@ -96,7 +96,7 @@ Some directions to explore once you're comfortable with the codebase.
 - **High score:** persist the best score to disk across sessions.
 - **Background:** find or make a background image, and place it behind the game board.
 - **Angry wiggles:** make the gems shake angrily when an invalid move is made.
-- **New Font:** find a better font, add it to the assets folder, and use it.
+- **New font:** find a better font, add it to the assets folder, and use it.
 
 ### Intermediate
 

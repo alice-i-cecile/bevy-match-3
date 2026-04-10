@@ -47,11 +47,9 @@ Indulge your curiosity: the point is to explore and learn!
 - On Linux you may need extra system libraries for audio/windowing.
   See [linux_dependencies.md](https://github.com/bevyengine/bevy/blob/main/docs/linux_dependencies.md).
 
-```bash
-git clone https://github.com/alice-i-cecile/bevy-match-3
-cd bevy-match-3
-cargo run
-```
+1. Create your own fork of this [template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+2. Clone your fork.
+3. Open a terminal in your new project's directory and use `cargo run` to try out the game!
 
 The first build compiles Bevy and dependencies, so it can take a few minutes.
 Subsequent builds are much faster due to incremental compilation.

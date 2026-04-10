@@ -7,7 +7,7 @@
 use bevy::prelude::*;
 use bevy::{
     input_focus::{
-        InputDispatchPlugin, InputFocus, InputFocusVisible,
+        AutoFocus, InputDispatchPlugin, InputFocus, InputFocusVisible,
         directional_navigation::DirectionalNavigationPlugin,
     },
     math::{CompassOctant, Dir2},
@@ -67,7 +67,7 @@ const QUIT_BUTTON_NORMAL: Color = Color::hsl(0.0, 0.60, 0.35);
 const QUIT_BUTTON_HOVERED: Color = Color::hsl(0.0, 0.60, 0.47);
 const BUTTON_FOCUS_BORDER: Color = Color::hsl(52.0, 0.30, 0.68);
 
-fn setup_menu(mut commands: Commands, mut input_focus: ResMut<InputFocus>) {
+fn setup_menu(mut commands: Commands) {
     commands
         .spawn((
             // This will cause all child nodes to be despawned when we leave the main menu as well.
@@ -94,9 +94,10 @@ fn setup_menu(mut commands: Commands, mut input_focus: ResMut<InputFocus>) {
             ));
 
             // Play button
-            let play_button = parent
+            parent
                 .spawn((
                     PlayButton,
+                    AutoFocus,
                     Button,
                     AutoDirectionalNavigation::default(),
                     MenuButtonColors {
@@ -122,11 +123,7 @@ fn setup_menu(mut commands: Commands, mut input_focus: ResMut<InputFocus>) {
                         },
                         TextColor(Color::WHITE),
                     ));
-                })
-                .id();
-
-            // We should set our initial input focus to the Play button so the player can just hit Enter to start a new game.
-            input_focus.set(play_button);
+                });
 
             // Quit button
             parent
@@ -161,11 +158,7 @@ fn setup_menu(mut commands: Commands, mut input_focus: ResMut<InputFocus>) {
 }
 
 /// Full-screen overlay: final score + button back to the main menu.
-fn setup_game_over_screen(
-    mut commands: Commands,
-    score: Res<Score>,
-    mut input_focus: ResMut<InputFocus>,
-) {
+fn setup_game_over_screen(mut commands: Commands, score: Res<Score>) {
     commands
         .spawn((
             DespawnOnExit(GameState::GameOver),
@@ -199,9 +192,10 @@ fn setup_game_over_screen(
                 TextColor(Color::hsl(54.0, 0.91, 0.70)),
             ));
 
-            let main_menu_button = parent
+            parent
                 .spawn((
                     MainMenuButton,
+                    AutoFocus,
                     Button,
                     AutoDirectionalNavigation::default(),
                     MenuButtonColors {
@@ -227,11 +221,7 @@ fn setup_game_over_screen(
                         },
                         TextColor(Color::WHITE),
                     ));
-                })
-                .id();
-
-            // Set initial focus to the main menu button so the player can just hit Enter to return to the main menu.
-            input_focus.set(main_menu_button);
+                });
         });
 }
 

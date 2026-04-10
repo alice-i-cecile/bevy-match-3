@@ -20,6 +20,10 @@ impl Plugin for InGameUiPlugin {
     }
 }
 
+const SCORE_FONT_SIZE: f32 = 28.0;
+const SCORE_TOP: f32 = 14.0;
+const SCORE_LEFT: f32 = 16.0;
+
 #[derive(Component)]
 struct ScoreText;
 
@@ -29,14 +33,14 @@ fn setup_in_game_ui(mut commands: Commands) {
         ScoreText,
         Text::new(Score::default().to_string()),
         TextFont {
-            font_size: 28.0,
+            font_size: SCORE_FONT_SIZE,
             ..default()
         },
         TextColor(Color::WHITE),
         Node {
             position_type: PositionType::Absolute,
-            top: Val::Px(14.0),
-            left: Val::Px(16.0),
+            top: Val::Px(SCORE_TOP),
+            left: Val::Px(SCORE_LEFT),
             ..default()
         },
         DespawnOnExit(ScreenState::InGame),

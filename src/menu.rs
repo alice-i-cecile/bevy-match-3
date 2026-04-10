@@ -66,6 +66,20 @@ const BUTTON_HOVERED: Color = Color::hsl(224.0, 0.72, 0.50);
 const QUIT_BUTTON_NORMAL: Color = Color::hsl(0.0, 0.60, 0.35);
 const QUIT_BUTTON_HOVERED: Color = Color::hsl(0.0, 0.60, 0.47);
 const BUTTON_FOCUS_BORDER: Color = Color::hsl(52.0, 0.30, 0.68);
+const GAME_OVER_OVERLAY_COLOR: Color = Color::srgba(0.0, 0.0, 0.0, 0.75);
+const GAME_OVER_SCORE_COLOR: Color = Color::hsl(54.0, 0.91, 0.70);
+
+const TITLE_FONT_SIZE: f32 = 72.0;
+const GAME_OVER_HEADING_FONT_SIZE: f32 = 64.0;
+const GAME_OVER_SCORE_FONT_SIZE: f32 = 42.0;
+const BUTTON_FONT_SIZE: f32 = 36.0;
+
+const MENU_ROW_GAP: f32 = 28.0;
+const BUTTON_PADDING_H: f32 = 52.0;
+const BUTTON_PADDING_V: f32 = 18.0;
+const BUTTON_TOP_MARGIN: f32 = 16.0;
+const BUTTON_BORDER_WIDTH: f32 = 2.0;
+const BUTTON_BORDER_RADIUS: f32 = 8.0;
 
 fn setup_menu(mut commands: Commands) {
     commands
@@ -78,7 +92,7 @@ fn setup_menu(mut commands: Commands) {
                 flex_direction: FlexDirection::Column,
                 align_items: AlignItems::Center,
                 justify_content: JustifyContent::Center,
-                row_gap: Val::Px(28.0),
+                row_gap: Val::Px(MENU_ROW_GAP),
                 ..default()
             },
         ))
@@ -87,7 +101,7 @@ fn setup_menu(mut commands: Commands) {
             parent.spawn((
                 Text::new("Bevy Match-3"),
                 TextFont {
-                    font_size: 72.0,
+                    font_size: TITLE_FONT_SIZE,
                     ..default()
                 },
                 TextColor(Color::WHITE),
@@ -105,10 +119,10 @@ fn setup_menu(mut commands: Commands) {
                         hovered: BUTTON_HOVERED,
                     },
                     Node {
-                        padding: UiRect::axes(Val::Px(52.0), Val::Px(18.0)),
-                        margin: UiRect::top(Val::Px(16.0)),
-                        border: UiRect::all(Val::Px(2.0)),
-                        border_radius: BorderRadius::all(Val::Px(8.0)),
+                        padding: UiRect::axes(Val::Px(BUTTON_PADDING_H), Val::Px(BUTTON_PADDING_V)),
+                        margin: UiRect::top(Val::Px(BUTTON_TOP_MARGIN)),
+                        border: UiRect::all(Val::Px(BUTTON_BORDER_WIDTH)),
+                        border_radius: BorderRadius::all(Val::Px(BUTTON_BORDER_RADIUS)),
                         ..default()
                     },
                     BackgroundColor(BUTTON_NORMAL),
@@ -118,7 +132,7 @@ fn setup_menu(mut commands: Commands) {
                     btn.spawn((
                         Text::new("Play"),
                         TextFont {
-                            font_size: 36.0,
+                            font_size: BUTTON_FONT_SIZE,
                             ..default()
                         },
                         TextColor(Color::WHITE),
@@ -136,9 +150,9 @@ fn setup_menu(mut commands: Commands) {
                         hovered: QUIT_BUTTON_HOVERED,
                     },
                     Node {
-                        padding: UiRect::axes(Val::Px(52.0), Val::Px(18.0)),
-                        border: UiRect::all(Val::Px(2.0)),
-                        border_radius: BorderRadius::all(Val::Px(8.0)),
+                        padding: UiRect::axes(Val::Px(BUTTON_PADDING_H), Val::Px(BUTTON_PADDING_V)),
+                        border: UiRect::all(Val::Px(BUTTON_BORDER_WIDTH)),
+                        border_radius: BorderRadius::all(Val::Px(BUTTON_BORDER_RADIUS)),
                         ..default()
                     },
                     BackgroundColor(QUIT_BUTTON_NORMAL),
@@ -148,7 +162,7 @@ fn setup_menu(mut commands: Commands) {
                     btn.spawn((
                         Text::new("Quit"),
                         TextFont {
-                            font_size: 36.0,
+                            font_size: BUTTON_FONT_SIZE,
                             ..default()
                         },
                         TextColor(Color::WHITE),
@@ -168,16 +182,16 @@ fn setup_game_over_screen(mut commands: Commands, score: Res<Score>) {
                 flex_direction: FlexDirection::Column,
                 align_items: AlignItems::Center,
                 justify_content: JustifyContent::Center,
-                row_gap: Val::Px(28.0),
+                row_gap: Val::Px(MENU_ROW_GAP),
                 ..default()
             },
-            BackgroundColor(Color::srgba(0.0, 0.0, 0.0, 0.75)),
+            BackgroundColor(GAME_OVER_OVERLAY_COLOR),
         ))
         .with_children(|parent| {
             parent.spawn((
                 Text::new("No More Moves!"),
                 TextFont {
-                    font_size: 64.0,
+                    font_size: GAME_OVER_HEADING_FONT_SIZE,
                     ..default()
                 },
                 TextColor(Color::WHITE),
@@ -186,10 +200,10 @@ fn setup_game_over_screen(mut commands: Commands, score: Res<Score>) {
             parent.spawn((
                 Text::new(score.to_string()),
                 TextFont {
-                    font_size: 42.0,
+                    font_size: GAME_OVER_SCORE_FONT_SIZE,
                     ..default()
                 },
-                TextColor(Color::hsl(54.0, 0.91, 0.70)),
+                TextColor(GAME_OVER_SCORE_COLOR),
             ));
 
             parent
@@ -203,10 +217,10 @@ fn setup_game_over_screen(mut commands: Commands, score: Res<Score>) {
                         hovered: BUTTON_HOVERED,
                     },
                     Node {
-                        padding: UiRect::axes(Val::Px(52.0), Val::Px(18.0)),
-                        margin: UiRect::top(Val::Px(16.0)),
-                        border: UiRect::all(Val::Px(2.0)),
-                        border_radius: BorderRadius::all(Val::Px(8.0)),
+                        padding: UiRect::axes(Val::Px(BUTTON_PADDING_H), Val::Px(BUTTON_PADDING_V)),
+                        margin: UiRect::top(Val::Px(BUTTON_TOP_MARGIN)),
+                        border: UiRect::all(Val::Px(BUTTON_BORDER_WIDTH)),
+                        border_radius: BorderRadius::all(Val::Px(BUTTON_BORDER_RADIUS)),
                         ..default()
                     },
                     BackgroundColor(BUTTON_NORMAL),
@@ -216,7 +230,7 @@ fn setup_game_over_screen(mut commands: Commands, score: Res<Score>) {
                     btn.spawn((
                         Text::new("Main Menu"),
                         TextFont {
-                            font_size: 36.0,
+                            font_size: BUTTON_FONT_SIZE,
                             ..default()
                         },
                         TextColor(Color::WHITE),

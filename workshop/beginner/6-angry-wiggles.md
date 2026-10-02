@@ -3,7 +3,7 @@
 **Goal:** Make the two gems involved in an _invalid_ swap shake angrily, so
 the player gets visual feedback in addition to the existing audio cue.
 
-**You'll learn:** majing a component for short-lived animations,
+**You'll learn:** making a component for short-lived animations,
 how to drive position from elapsed time, and how to keep two animation
 systems from fighting over the same `Transform`.
 
